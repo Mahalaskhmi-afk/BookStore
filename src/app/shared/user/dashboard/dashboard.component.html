@@ -1,0 +1,152 @@
+<div class="container-fluid my-5">
+
+    <div class="container-fluid justify-content-center">
+        <button type="button" class="btn btn-dark text-white mb-4" data-bs-toggle="modal" data-bs-target="#myModal">Add Books</button>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog d-flex">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Book</h5>
+                        <button type="button" data-bs-dismiss="modal" class="btn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <label for="title" class="form-label">Book Title</label>
+                                    <input type="text" name="title" id="title" class="form-control" required>
+                                </div>
+                
+                                <div class="col-sm-6">
+                                    <label for="author" class="form-label">Author</label>
+                                    <input type="text" name="author" id="author" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <label for="genre" class="form-label">Genre</label>
+                                    <input type="text" name="genre" id="genre" class="form-control" required>
+                                </div>  
+                
+                                <div class="col-sm-6">
+                                    <label for="price" class="form-label">Price</label>
+                                    <input type="number" name="price" id="price" class="form-control" required>
+                                </div>
+                            </div> 
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <label for="stock" class="form-label">Stock</label>
+                                    <input type="number" name="stock" id="stock" class="form-control" required>
+                                </div>  
+                
+                                <div class="col-sm-6">
+                                    <label for="date" class="form-label">Date of Upload</label>
+                                    <input type="date" name="date" id="date" class="form-control" readonly [value]="date">
+                                </div>
+                            </div> 
+                            <div class="col-sm-12">
+                                <label for="image" class="form-label">Book Image</label>
+                                <input type="file" name="image" id="image" class="form-control">
+                            </div>
+
+                            <div class="col-sm-12 my-3 d-flex">
+                                <button type="button" class="btn btn-primary w-100">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 mb-4">
+            <div class="card border-3" style="border-radius: 20px; height: 230px;">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img src="logo.png" alt="Image" class="img-fluid rounded-start p-4" style="width: 200px; height: auto;">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h5 class="card-title">Book Title</h5>
+                            <p class="card-text">This is a brief description of the book. It provides an overview of the book's content, themes, and any other relevant information that might interest the reader.</p>
+                            <b></b>
+                            <p class="card-text">
+                                Price: 300
+                                <span class="ms-5">Stock: 10</span>
+                                <span class="ms-5">Date of Update: 12-08-2024</span>
+                            </p>                            
+                            <div class="row d-flex">
+                                <div class="col-sm-6"><button type="button" class="btn btn-primary" style="width: 90%;" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                                    <div class="modal" id="editModal">
+                                        <div class="modal-dialog d-flex">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Edit Book</h5>
+                                                    <button type="button" data-bs-dismiss="modal" class="btn-close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="#">
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-6">
+                                                                <label for="title" class="form-label">Book Title</label>
+                                                                <input type="text" name="title" id="title" class="form-control" required>
+                                                            </div>
+                                            
+                                                            <div class="col-sm-6">
+                                                                <label for="author" class="form-label">Author</label>
+                                                                <input type="text" name="author" id="author" class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-6">
+                                                                <label for="genre" class="form-label">Genre</label>
+                                                                <input type="text" name="genre" id="genre" class="form-control" required>
+                                                            </div>  
+                                            
+                                                            <div class="col-sm-6">
+                                                                <label for="price" class="form-label">Price</label>
+                                                                <input type="number" name="price" id="price" class="form-control" required>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="row mb-3">
+                                                            <div class="col-sm-6">
+                                                                <label for="stock" class="form-label">Stock</label>
+                                                                <input type="number" name="stock" id="stock" class="form-control" required>
+                                                            </div>  
+                                            
+                                                            <div class="col-sm-6">
+                                                                <label for="date" class="form-label">Date of Update</label>
+                                                                <input type="date" name="date" id="date" class="form-control" readonly [value]="date">
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-sm-12">
+                                                            <label for="image" class="form-label">Book Image</label>
+                                                            <input type="file" name="image" id="image" class="form-control">
+                                                        </div>
+                            
+                                                        <div class="col-sm-12 my-3 d-flex">
+                                                            <button type="button" class="btn btn-primary w-100">Update</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6"><button type="button" class="btn btn-danger" style="width: 90%;">Delete</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-6 mb-4">
+            <div class="card border-3">
+                <img src="logo.png" alt="Image" class="card-img" style="width: 200px; height: 200px; border-radius: 15px;">
+            </div>
+        </div>
+    </div>
+</div>
+

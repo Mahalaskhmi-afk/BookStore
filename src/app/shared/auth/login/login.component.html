@@ -1,0 +1,46 @@
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="p-4 rounded" style="width: 400px; background-color: #edf3f7;">
+            <h2 class="text-center text-dark text-bold">Login</h2>
+
+            <!-- <div class="dropdown w-100 mb-3">
+                <button type="button" class="btn btn-dark dropdown-toggle w-100" data-bs-toggle="dropdown">
+                    Login as
+                </button>
+                <ul class="dropdown-menu w-100">
+                    <li><a class="dropdown-item w-100" href="#">User</a></li>
+                    <li><a class="dropdown-item w-100" routerLink="/profile">Admin</a></li>
+                </ul>
+            </div> -->
+
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div *ngIf="responseMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ responseMessage }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="email" class="form-label text-dark">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" formControlName="email" style="border: 1px solid black;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label text-dark">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" formControlName="password"
+                        style="border: 1px solid black;">
+                </div>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" name="role" id="role" class="form-check-input" formControlName="choice">
+                    <label for="role" class="form-check-label text-dark">Login as admin</label>
+                </div>
+
+                <button type="submit" class="btn btn-dark w-100 mb-2">Login</button>
+
+                <span class="text-dark">Don't have an account? <a [routerLink]="['/signUp']"
+                        style="text-decoration: none;">Sign Up</a></span>
+            </form>
+        </div>
+    </div>

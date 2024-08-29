@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-dark mb-5">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+            <img src="logo1.png" alt="Logo" class="rounded-pill" style="width: 40px;">
+            <span class="text-white ms-2">Book Store</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a href="#" routerLink="/list" routerLinkActive="active" class="nav-link text-white border-1">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" routerLink="/orders" class="nav-link text-white">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" routerLink="/feedbacks" class="nav-link text-white">Feedbacks</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+                        {{userName}}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+                        <li><a class="dropdown-item" routerLink="/profile/{{userId}}">Profile</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
