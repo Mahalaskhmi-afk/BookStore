@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { EmailValidator, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { error, log } from 'console';
-import { PassThrough } from 'stream';
 import { CommonModule } from '@angular/common';
 
 @Component({

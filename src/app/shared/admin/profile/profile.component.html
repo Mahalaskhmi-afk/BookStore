@@ -1,122 +1,153 @@
-<div class="container-fluid vh-95 mb-5 d-flex justify-content-center align-items-center">
-    <div class="p-4 rounded w-100" style="max-width: 100vh; background-color: #edf3f7;">
-        <h2 class="text-dark mb-3">Admin Profile</h2>
-
-        <form [formGroup]="userForm">
-            <h4 class="text-dark mb-3">Personal Information</h4>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="adminId" class="form-label">Admin ID</label>
-                    <input type="text" name="adminId" id="adminId" class="form-control" formControlName="userId" readonly>
+    <div class="container-fluid vh-95 mb-5 d-flex justify-content-center align-items-center">
+        <div class="p-4 rounded w-100" style="max-width: 100vh; background-color: #edf3f7;">
+            <div class="row bm-3">
+                <div class="col-sm-9">
+                    <h2 class="text-dark mb-3">Admin Profile</h2>
                 </div>
-                <div class="col-md-6">
-                    <label for="profilePic" class="form-label">Profile Picture</label>
-                    <input type="file" name="profilePic" id="profilePic" class="form-control">
-                    <img id="profilePicPreview" src="#" alt="Profile Picture" class="img-fluid mt-2" style="display: none; max-width: 100px;">
+
+                <div class="col-sm-3 text-end">
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#editModal">
+                        <i class="bi bi-pencil-fill"></i> Edit
+                    </a>
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" name="firstName" id="firstName" class="form-control" formControlName="firstName" required>
+
+            <form [formGroup]="userForm">
+                <div class="row mb-3">
+                    <div class="col-sm-9">
+                        <h4 class="text-dark mb-3">Personal Information</h4>
+                    </div>
                 </div>
 
-                <div class="col-md-6">
-                    <label for="lastName" class="form-label">Last Name</label>
-                    <input type="text" name="lastName" id="lastName" class="form-control" formControlName="lastName" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" formControlName="email" required>
-                </div>
-
-                <div class="col-md-6">
-                    <label for="gender" class="form-label">Gender</label>
-                    <div class="d-flex">
-                        <div class="form-check me-3">
-                            <input type="radio" name="gender" id="male" value="male" class="form-check-input">
-                            <label for="male" class="form-check-label">Male</label>
+                <div class="row mb-3">
+                    <div class="col-md-6 d-flex flex-column align-items-center">
+                        <!-- <label for="profilePic" class="form-label">Profile Picture</label> -->
+                        <!-- <input type="file" name="profilePic" id="profilePic" class="form-control" (change)="onFileSelected($event)"> -->
+                        <div class="mt-2">
+                            <img id="profilePicPreview"
+                                [src]="userForm.get('image')?.value ? 'data:image/jpeg;base64,' + userForm.get('image')?.value : 'user.png'"
+                                alt="Profile Picture" class="img-fluid avatar" style="display: block; max-width: 100px;">
                         </div>
-                        <div class="form-check">
-                            <input type="radio" name="gender" id="female" value="female" class="form-check-input">
-                            <label for="female" class="form-check-label">Female</label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="adminId" class="form-label">Admin ID</label>
+                        <input type="text" name="adminId" id="adminId" class="form-control" formControlName="userId"
+                            readonly>
+                    </div>
+
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" name="firstName" id="firstName" class="form-control" formControlName="firstName"
+                            readonly>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" name="lastName" id="lastName" class="form-control" formControlName="lastName"
+                            readonly>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" formControlName="email" readonly>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="gender" class="form-label">Gender</label>
+                        <div class="d-flex">
+                            <div class="form-check me-3">
+                                <input type="radio" name="gender" id="male" value="male" class="form-check-input"
+                                    formControlName="gender" readonly>
+                                <label for="male" class="form-check-label">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="gender" id="female" value="female" class="form-check-input"
+                                    formControlName="gender" readonly>
+                                <label for="female" class="form-check-label">Female</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <h4 class="text-dark mb-3">Address Information</h4>
-            <div class="row mb-3">
-                <div class="col-12">
-                    <label for="address" class="form-label">Street Address</label>
-                    <input type="text" name="address" id="address" class="form-control" formControlName="address" required>
+                <h4 class="text-dark mb-3">Address Information</h4>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="address" class="form-label">Street Address</label>
+                        <input type="text" name="address" id="address" class="form-control" formControlName="address"
+                            readonly>
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="city" class="form-label">City</label>
-                    <input type="text" name="city" id="city" class="form-control" formControlName="city" required>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" name="city" id="city" class="form-control" formControlName="city" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="state" class="form-label">State/Province</label>
+                        <input type="text" name="state" id="state" class="form-control" formControlName="state" readonly>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="state" class="form-label">State/Province</label>
-                    <input type="text" name="state" id="state" class="form-control" formControlName="state" required>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="country" id="country" class="form-control" formControlName="country"
+                            readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="zip" class="form-label">ZIP/Postal Code</label>
+                        <input type="text" name="zip" id="zip" class="form-control" formControlName="pinCode" readonly>
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="country" class="form-label">Country</label>
-                    <input type="text" name="country" id="country" class="form-control" formControlName="country" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="zip" class="form-label">ZIP/Postal Code</label>
-                    <input type="text" name="zip" id="zip" class="form-control" formControlName="pincode" required>
-                </div>
-            </div>
 
-            <div class="mb-3">
-                <span style="font-size: 18px;">Forgot Your Password? <a href="#" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#myModal">Click here to change</a></span>
-            </div>
-            
-            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Change Password</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                    <label for="currentEmail" class="form-label">Email</label>
-                                    <input type="email" name="currentEmail" id="currentEmail" class="form-control">
+                <div class="mb-3">
+                    <span style="font-size: 18px;">Forgot Your Password? <a href="#" style="text-decoration: none;"
+                            data-bs-toggle="modal" data-bs-target="#myModal">Click here to change</a></span>
+                </div>
+
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Change Password</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="currentEmail" class="form-label">Email</label>
+                                        <input type="email" name="currentEmail" id="currentEmail" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="newPassword" class="form-label">New Password</label>
+                                        <input type="password" name="newPassword" id="newPassword" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                        <input type="password" name="confirmPassword" id="confirmPassword"
+                                            class="form-control">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                    <label for="newPassword" class="form-label">New Password</label>
-                                    <input type="password" name="newPassword" id="newPassword" class="form-control">
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                    <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                                    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <button type="submit" class="btn btn-dark w-100 mb-2">Save Changes</button>
-        </form>
+                <button type="submit" class="btn btn-dark w-100 mb-2">Save Changes</button>
+            </form>
+        </div>
     </div>
-</div>

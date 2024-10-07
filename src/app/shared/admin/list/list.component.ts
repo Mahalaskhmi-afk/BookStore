@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../../services/books.service';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -12,11 +14,29 @@ import { CommonModule } from '@angular/common';
 export class ListComponent implements OnInit {
 
   books: any[] = [];
+  currentDate!: string;
+  bookForm! : FormGroup
+  image!:File
+  role!:string
 
-  constructor(private service: BooksService) {}
 
+  constructor(private service: BooksService,
+    private fb : FormBuilder,
+    private authService : AuthService
+  ) {}
   ngOnInit(): void {
-    this.getBooks(); // Fetch the books on component initialization
+
+    const role = this.authService.getRole();
+    this.getBooks();
+
+    this.bookForm = this.fb.group({
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+      genre: ['', Validators.required],
+      price: ['', Validators.required],
+      stock: ['', Validators.required],
+    })
+
   }
 
   getBooks(): void {
@@ -25,13 +45,12 @@ export class ListComponent implements OnInit {
         console.log(res)
         this.books = res.map(book => ({
           ...book,
-          processedImg: book.returnedImage ? 'data:image/jpeg;base64,' + book.returnedImage : 'assets/placeholder.png'
+          processedImg: book.image ? 'data:image/jpeg;base64,' + book.image : 'assets/placeholder.png'
         }));
       },
       error: (err) => {
         console.error('Error loading books:', err);
       }
     });
-  }
-  
+  }  
 }

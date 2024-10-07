@@ -1,0 +1,13 @@
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover; /* Ensures the image fits within the circular container */
+    border: 2px solid #ddd; /* Optional border for better appearance */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+/* You can also add some styles for the file input */
+input[type="file"] {
+    margin-top: 5px;
+}
