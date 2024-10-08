@@ -25,8 +25,6 @@ export class ListComponent implements OnInit {
     private authService : AuthService
   ) {}
   ngOnInit(): void {
-
-    const role = this.authService.getRole();
     this.getBooks();
 
     this.bookForm = this.fb.group({
@@ -40,6 +38,8 @@ export class ListComponent implements OnInit {
   }
 
   getBooks(): void {
+    const role = this.authService.getRole();
+    console.log("list role" + role)
     this.service.getBooks().subscribe({
       next: (res) => {
         console.log(res)

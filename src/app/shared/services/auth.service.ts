@@ -38,6 +38,7 @@ export class AuthService {
             token: (response).token,
             userId: (response).user.userId,
             userName: (response).user.firstName,
+            role: (response).user.role
           };
         })
       );
@@ -57,6 +58,8 @@ export class AuthService {
     this.localStorage?.removeItem('role');
     this.localStorage?.removeItem('token');
     this.localStorage?.removeItem('userName');
+    this.localStorage?.removeItem('customerId');
+    this.localStorage?.removeItem('userId');
   }
 
   setUserName(name: string) {

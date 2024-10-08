@@ -43,11 +43,7 @@ export class LoginComponent {
           this.responseMessage = "Login Successful"
           this.router.navigateByUrl('list')
           this.checked = this.loginForm.get("choice")?.value ? true : false;
-          if(this.checked){
-            this.authService.setRole("ROLE_ADMIN");
-          }else{
-            this.authService.setRole("ROLE_USER")
-          }
+          this.authService.setRole(res.role)
         },
         error : err =>{
           console.log(err)
