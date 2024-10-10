@@ -1,7 +1,12 @@
 <div class="container-fluid my-5">
-
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <div *ngIf="responseMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ responseMessage }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
     <div class="container-fluid justify-content-center">
-        <button *ngIf="role==='ROLE_ADMIN'" type="button" class="btn btn-dark text-white mb-4" data-bs-toggle="modal" data-bs-target="#myModal">Add Books</button>
+        <button *ngIf="authService.getRole() ==='ROLE_ADMIN'" type="button" class="btn btn-dark text-white mb-4" data-bs-toggle="modal" data-bs-target="#myModal">Add Books</button>
         <div class="modal" id="myModal">
           <div class="modal-dialog d-flex">
             <div class="modal-content">
@@ -10,47 +15,47 @@
                 <button type="button" data-bs-dismiss="modal" class="btn-close"></button>
               </div>
               <div class="modal-body">
-                <form >
+                <form [formGroup]="bookForm" (ngSubmit)="addBooks()" enctype="multipart/form-data">
                   <div class="row mb-3">
                     <div class="col-sm-6">
                       <label for="title" class="form-label">Book Title</label>
-                      <input type="text" name="title" id="title" class="form-control" required>
+                      <input type="text" name="title" id="title" class="form-control" formControlName="title" required>
                     </div>
       
                     <div class="col-sm-6">
                       <label for="author" class="form-label">Author</label>
-                      <input type="text" name="author" id="author" class="form-control" required>
+                      <input type="text" name="author" id="author" class="form-control" formControlName="author" required>
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-sm-6">
                       <label for="genre" class="form-label">Genre</label>
-                      <input type="text" name="genre" id="genre" class="form-control" required>
+                      <input type="text" name="genre" id="genre" class="form-control" formControlName="genre" required>
                     </div>
       
                     <div class="col-sm-6">
                       <label for="price" class="form-label">Price</label>
-                      <input type="number" name="price" id="price" class="form-control" required>
+                      <input type="number" name="price" id="price" class="form-control" formControlName="price" required>
                     </div>
                   </div>
-                  <div class="row mb-3">
-                    <div class="col-sm-6">
+                  <!-- <div class="row mb-3"> -->
+                    <div class="col-sm-12">
                       <label for="stock" class="form-label">Stock</label>
-                      <input type="number" name="stock" id="stock" class="form-control" required>
+                      <input type="number" name="stock" id="stock" class="form-control" formControlName="stock" required>
                     </div>
       
-                    <div class="col-sm-6">
+                    <!-- <div class="col-sm-6">
                       <label for="date" class="form-label">Date of Upload</label>
                       <input type="date" name="date" id="date" class="form-control" [value]="currentDate" readonly>
-                    </div>
-                  </div>
+                    </div> -->
+                  <!-- </div> -->
                   <div class="col-sm-12">
                     <label for="image" class="form-label">Book Image</label>
-                    <input type="file" name="image" id="image" class="form-control">
+                    <input type="file" name="image" id="image" class="form-control" (change)="onFileSelected($event)">
                   </div>
       
                   <div class="col-sm-12 my-3 d-flex">
-                    <button type="button" class="btn btn-primary w-100">Submit</button>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
                   </div>
                 </form>
               </div>
@@ -78,7 +83,7 @@
                             </p>                            
                             <div class="row d-flex">
                                 <div class="col-6">
-                                    <button *ngIf="role==='ROLE_ADMIN'" type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                                    <button *ngIf="authService.getRole() ==='ROLE_ADMIN'" type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                                     
                                     <div class="modal fade" id="editModal" tabindex="-1">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -131,11 +136,11 @@
                                     </div>
                                 </div>
                                 
-                                <div *ngIf="role==='ROLE_ADMIN'" class="col-6">
+                                <div *ngIf="authService.getRole() ==='ROLE_ADMIN'" class="col-6">
                                     <button type="button" class="btn btn-danger w-100">Delete</button>
                                 </div>
 
-                                <div class="col-12">
+                                <div *ngIf="authService.getRole() ==='ROLE_USER'" class="col-12">
                                   <button type="button" class="btn btn-primary w-100">Buy</button>
                               </div>
                             </div>

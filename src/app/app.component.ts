@@ -5,6 +5,7 @@ import { RegisterComponent } from "./shared/auth/register/register.component";
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { ListComponent } from "./shared/admin/list/list.component";
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,5 +19,6 @@ import { ListComponent } from "./shared/admin/list/list.component";
 export class AppComponent {
 
   public router = inject(Router)
+  public authService = inject(AuthService)
   title = 'BookShop';
 }

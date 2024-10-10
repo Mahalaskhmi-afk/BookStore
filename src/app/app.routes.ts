@@ -7,6 +7,7 @@ import { OrdersComponent } from './shared/admin/orders/orders.component';
 import { FeedbacksComponent } from './shared/admin/feedbacks/feedbacks.component';
 import { ProfileComponent } from './shared/admin/profile/profile.component';
 import { DashboardComponent } from './shared/admin/dashboard/dashboard.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
     {
@@ -27,22 +28,26 @@ export const routes: Routes = [
     {
         path:'list',
         component:ListComponent,        
-        title:'Books'
+        title:'Books',
+        canActivate:[authGuard]
     },
     {
         path:'orders',
         component:OrdersComponent,
-        title:"Orders"
+        title:"Orders",
+        canActivate:[authGuard]
     },
     {
         path:'feedbacks',
         component:FeedbacksComponent,
-        title:"Feedbacks"
+        title:"Feedbacks",
+        canActivate:[authGuard]
     },
     {
         path:'profile/:userId',
         component:ProfileComponent,
-        title:'Admin | Profile'
+        title:'Admin | Profile',
+        canActivate:[authGuard]
     },
     {
         path:"",

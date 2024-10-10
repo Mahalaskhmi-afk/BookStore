@@ -18,4 +18,11 @@ export class BooksService {
     return this.http.get<any[]>("http://localhost:8080/book",{ headers });
   }
 
+  addBooks(books : any):Observable<any[]>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<any[]>("http://localhost:8080/book/add",books,{ headers });
+  }
+
 }

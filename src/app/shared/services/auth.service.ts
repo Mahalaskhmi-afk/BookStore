@@ -3,7 +3,6 @@ import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-// Define the structure of the response object
 interface AuthResponse {
   token: string;
   customer: {
@@ -94,5 +93,10 @@ export class AuthService {
 
   getToken() {
     return this.localStorage?.getItem('token');
+  }
+
+  isAuthenticated():boolean{
+    const token = this.localStorage?.getItem('token')
+    return !!token;
   }
 }

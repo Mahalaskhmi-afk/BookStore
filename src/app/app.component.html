@@ -1,4 +1,5 @@
 <div class="container-fluid">
-    <app-navbar *ngIf="!router.url.includes('login')"></app-navbar>
+    <app-navbar *ngIf="authService.isAuthenticated()"></app-navbar>
+    <app-list *ngIf="authService.isAuthenticated()"></app-list>
     <router-outlet></router-outlet>
-</div>
+</div>  
