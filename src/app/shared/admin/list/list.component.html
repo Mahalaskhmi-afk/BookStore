@@ -5,64 +5,77 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 </div>
-    <div class="container-fluid justify-content-center">
-        <button *ngIf="authService.getRole() ==='ROLE_ADMIN'" type="button" class="btn btn-dark text-white mb-4" data-bs-toggle="modal" data-bs-target="#myModal">Add Books</button>
-        <div class="modal" id="myModal">
-          <div class="modal-dialog d-flex">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Add Book</h5>
-                <button type="button" data-bs-dismiss="modal" class="btn-close"></button>
+<div class="container-fluid justify-content-center">
+  <button *ngIf="authService.getRole() === 'ROLE_ADMIN'" type="button" class="btn btn-dark text-white mb-4" data-bs-toggle="modal" data-bs-target="#myModal">Add Books</button>
+  
+  <div class="modal" id="myModal">
+    <div class="modal-dialog d-flex">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Book</h5>
+          <button type="button" data-bs-dismiss="modal" class="btn-close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="bookForm" (ngSubmit)="addBooks()" enctype="multipart/form-data">
+            <!-- Book Title and Author -->
+            <div class="row mb-3">
+              <div class="col-sm-6">
+                <label for="title" class="form-label">Book Title</label>
+                <input type="text" name="title" id="title" class="form-control" formControlName="title" required>
               </div>
-              <div class="modal-body">
-                <form [formGroup]="bookForm" (ngSubmit)="addBooks()" enctype="multipart/form-data">
-                  <div class="row mb-3">
-                    <div class="col-sm-6">
-                      <label for="title" class="form-label">Book Title</label>
-                      <input type="text" name="title" id="title" class="form-control" formControlName="title" required>
-                    </div>
-      
-                    <div class="col-sm-6">
-                      <label for="author" class="form-label">Author</label>
-                      <input type="text" name="author" id="author" class="form-control" formControlName="author" required>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-sm-6">
-                      <label for="genre" class="form-label">Genre</label>
-                      <input type="text" name="genre" id="genre" class="form-control" formControlName="genre" required>
-                    </div>
-      
-                    <div class="col-sm-6">
-                      <label for="price" class="form-label">Price</label>
-                      <input type="number" name="price" id="price" class="form-control" formControlName="price" required>
-                    </div>
-                  </div>
-                  <!-- <div class="row mb-3"> -->
-                    <div class="col-sm-12">
-                      <label for="stock" class="form-label">Stock</label>
-                      <input type="number" name="stock" id="stock" class="form-control" formControlName="stock" required>
-                    </div>
-      
-                    <!-- <div class="col-sm-6">
-                      <label for="date" class="form-label">Date of Upload</label>
-                      <input type="date" name="date" id="date" class="form-control" [value]="currentDate" readonly>
-                    </div> -->
-                  <!-- </div> -->
-                  <div class="col-sm-12">
-                    <label for="image" class="form-label">Book Image</label>
-                    <input type="file" name="image" id="image" class="form-control" (change)="onFileSelected($event)">
-                  </div>
-      
-                  <div class="col-sm-12 my-3 d-flex">
-                    <button type="submit" class="btn btn-primary w-100">Submit</button>
-                  </div>
-                </form>
+              <div class="col-sm-6">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" name="author" id="author" class="form-control" formControlName="author" required>
               </div>
             </div>
-          </div>
+
+            <!-- Genre and Price -->
+            <div class="row mb-3">
+              <div class="col-sm-6">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" name="genre" id="genre" class="form-control" formControlName="genre" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" name="price" id="price" class="form-control" formControlName="price" required>
+              </div>
+            </div>
+
+            <!-- Stock -->
+            <div class="row mb-3">
+              <div class="col-sm-12">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" name="stock" id="stock" class="form-control" formControlName="stock" required>
+              </div>
+            </div>
+
+            <!-- Book Image -->
+            <div class="col-sm-12">
+              <label for="image" class="form-label">Book Image</label>
+              <input type="file" name="image" id="image" class="form-control" (change)="onFileSelected($event)">
+            </div>
+
+            <!-- Image Preview -->
+            <div class="col-sm-12 mt-3" *ngIf="selectedImage">
+              <img [src]="selectedImage" alt="Selected Image" class="img-thumbnail" style="max-width: 200px;">
+            </div>
+
+            <!-- Submit   Button -->
+            <div class="col-sm-12 my-3 d-flex">
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+
+            <!-- Error Display -->
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+          </form>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
       
 
     <div class="row">

@@ -17,6 +17,8 @@ export class ListComponent implements OnInit {
   currentDate!: string;
   bookForm!: FormGroup;
   image!: File;
+  selectedImage: string | ArrayBuffer | null = null;
+  errorMessage: string = '';
   responseMessage = '';
 
   constructor(
